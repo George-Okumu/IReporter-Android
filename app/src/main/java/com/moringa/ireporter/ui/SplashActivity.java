@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         image = findViewById(R.id.imageView);
         splatext = findViewById(R.id.splashText);
 
-        image.setAnimation(anima);
+        image.setAnimation(animaa);
         splatext.setAnimation(animaa);
 
         new Handler().postDelayed(new Runnable() {
