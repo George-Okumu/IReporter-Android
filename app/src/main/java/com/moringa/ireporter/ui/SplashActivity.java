@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this ,LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this , MainActivity.class);
                 startActivity(intent);
                 finish();
             }
