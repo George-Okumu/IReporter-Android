@@ -10,7 +10,6 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:layout_marginTop="80dp"
         android:src="@drawable/detective"
         android:id="@+id/signUpImage"/>
 
@@ -140,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don't have an account? Create One"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:id="@+id/signupcreate"
         android:textColor="@color/light_primary"
         android:layout_centerHorizontal="true"
