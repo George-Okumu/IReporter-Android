@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IReporter">
         <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
