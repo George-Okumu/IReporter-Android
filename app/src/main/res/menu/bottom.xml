@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item1"
+        android:title="Home"
+        android:icon="@drawable/round_person_black_24dp" />
+
+    <item
+        android:id="@+id/item2"
+        android:title="RedFlags"
+        android:icon="@drawable/round_email_black_24dp" />
+
+    <item
+        android:id="@+id/item3"
+        android:title="Interventions"
+        android:icon="@drawable/round_lock_black_24dp" />
+
+
+</menu>
