@@ -1,137 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.InterventionFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.RedFlagFragment"
+    android:orientation="vertical"
     android:background="@color/dark_primary">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Intervention Records"
-        android:fontFamily="cursive"
-        android:textSize="40sp"
-        android:textColor="@color/light_primary"
-        android:textStyle="bold"
-        />
-
-    <TextView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Subject"
-        android:textColor="@color/light_primary"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:layout_marginTop="90dp"/>
+        android:layout_height="150dp"
+        android:src="@drawable/detective"
+        android:id="@+id/signUpImage"/>
 
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:inputType="text"
-        android:id="@+id/interventionsubject"
-        android:background="@drawable/shape"
-        android:layout_marginTop="140dp"
-        android:layout_marginLeft="100dp"/>
 
     <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="Description"
-        android:textColor="@color/light_primary"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:layout_marginTop="170dp"/>
-
-
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:inputType="text"
-        android:id="@+id/interventiondescription"
-        android:background="@drawable/shape"
-        android:layout_marginTop="220dp"
-        android:layout_marginLeft="100dp"/>
-
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Location"
-        android:textColor="@color/light_primary"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:layout_marginTop="250dp"/>
-
-
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:inputType="text"
-        android:id="@+id/interventionlocation"
-        android:background="@drawable/shape"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="100dp"/>
-
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Optional"
-        android:textColor="@color/light_primary"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:layout_marginTop="350dp"/>
-
-    <TextView
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:text="Upload Image"
-        android:textColor="@color/light_primary"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="70dp"/>
-
-    <TextView
-        android:layout_width="210dp"
-        android:layout_height="50dp"
-        android:text="Upload Video"
-        android:textColor="@color/light_primary"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="450dp"/>
-
-
-    <Button
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="300dp"
-        android:background="@drawable/ic_baseline_image_24"
-        android:layout_marginTop="400dp"
-        android:id="@+id/imagebtn"/>
-
-    <Button
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_baseline_video_library_24"
-        android:layout_marginLeft="300dp"
-        android:id="@+id/videobtn"
-        android:layout_marginTop="450dp" />
-
-    <Button
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:layout_marginLeft="100dp"
-        android:text="Save records"
-        android:textSize="20sp"
-        android:id="@+id/savereintervention" />
+        android:fontFamily="sans-serif-black"
+        android:text="Intervention Records"
+        android:textAllCaps="true"
+        android:textColor="@color/light_primary"
+        android:textSize="33sp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Create A New Record"
+        android:textSize="25sp"
+        android:textColor="@color/light_primary"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject"
+            android:id="@+id/subjectInt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            app:counterEnabled="true"
+            app:counterMaxLength="150"
+            android:id="@+id/descriptionInt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location"
+            android:id="@+id/locationInt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:id="@+id/uploadbtn"
+            style="@style/TextAppearance.MaterialComponents.Button"
+            android:drawableRight="@drawable/ic_baseline_image_24"
+            android:drawableEnd="@drawable/ic_baseline_image_24"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Video"
+            android:id="@+id/videoBtn"
+            style="@style/TextAppearance.MaterialComponents.Button"
+            android:drawableRight="@drawable/ic_baseline_video_library_24"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Create Record"
+        android:id="@+id/createInt"
+        android:textStyle="bold"
+        android:textColor="@color/dark_primary" />
+</LinearLayout>
