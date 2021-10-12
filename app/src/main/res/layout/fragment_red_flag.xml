@@ -9,8 +9,8 @@
     android:background="@color/dark_primary">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/detective"
         android:id="@+id/signUpImage"/>
 
@@ -22,14 +22,14 @@
         android:text="Red-Flag Records"
         android:textAllCaps="true"
         android:textColor="@color/light_primary"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Let's Create A New Record"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textColor="@color/light_primary"/>
 
     <LinearLayout
@@ -101,7 +101,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="Create Record"
         android:id="@+id/createRed"
         android:textStyle="bold"
