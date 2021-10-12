@@ -4,17 +4,17 @@
     <item
         android:id="@+id/item1"
         android:title="Home"
-        android:icon="@drawable/round_person_black_24dp" />
+        android:icon="@drawable/ic_baseline_home_24" />
 
     <item
         android:id="@+id/item2"
         android:title="RedFlags"
-        android:icon="@drawable/round_email_black_24dp" />
+        android:icon="@drawable/ic_baseline_flag_24" />
 
     <item
         android:id="@+id/item3"
         android:title="Interventions"
-        android:icon="@drawable/round_lock_black_24dp" />
+        android:icon="@drawable/ic_baseline_mode_comment_24" />
 
 
 </menu>

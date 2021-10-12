@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RedFlagFragment"
+    tools:context=".ui.EditRecordActivity"
     android:background="@color/dark_primary">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fontFamily="cursive"
-        android:text="Red-Flag Records"
-        android:textColor="@color/light_primary"
+        android:text="iReporter"
         android:textSize="40sp"
+        android:textColor="@color/black"
+        android:fontFamily="cursive"
         android:textStyle="bold" />
 
-<!--?-->
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
