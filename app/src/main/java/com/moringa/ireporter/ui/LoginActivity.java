@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
 
 import butterknife.BindView;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == mLoginRegister) {
-            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
