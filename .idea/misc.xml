@@ -10,8 +10,8 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_intervention.xml" value="0.19322916666666667" />
-        <entry key="app/src/main/res/layout/fragment_red_flag.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/fragment_intervention.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_red_flag.xml" value="0.2" />
         <entry key="app/src/main/res/menu/bottom.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/xml/button_background.xml" value="0.19322916666666667" />
       </map>
