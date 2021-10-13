@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.ireporter.R;
 import com.moringa.ireporter.models.RedFlag;
-import com.moringa.ireporter.ui.RedFlagFragment;
 import com.moringa.ireporter.ui.RedFlagItemDetail;
 import com.squareup.picasso.Picasso;
 
@@ -57,6 +55,7 @@ public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagV
         @BindView(R.id.imageRed) ImageView mImageRed;
         @BindView(R.id.subjectRed) TextView mSubjectRed;
         @BindView(R.id.locationRed) TextView mLocationRed;
+        private Context mContext;
 
         public RedFlagViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.RedFlagFragment"
+    tools:context=".ui.CreateIntActivity"
     android:orientation="vertical"
     android:background="@color/dark_primary">
 
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Red-Flag Records"
+        android:text="Intervention Records"
         android:textAllCaps="true"
         android:textColor="@color/light_primary"
         android:textSize="20sp"
@@ -42,13 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Subject"
-            android:id="@+id/subjectRed"
+            android:id="@+id/subjectInt"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +57,7 @@
             android:hint="Description"
             app:counterEnabled="true"
             app:counterMaxLength="150"
-            android:id="@+id/descriptionRed"
+            android:id="@+id/descriptionInt"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Location"
-            android:id="@+id/locationRed"
+            android:id="@+id/locationInt"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Record"
-        android:id="@+id/createRed"
+        android:id="@+id/createInt"
         android:textStyle="bold"
-        android:textColor="@color/dark_primary"/>
+        android:textColor="@color/dark_primary" />
 </LinearLayout>
