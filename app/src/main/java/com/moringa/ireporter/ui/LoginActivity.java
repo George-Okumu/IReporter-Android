@@ -34,22 +34,27 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static int SPLASH_SCREEN = 5000;
 
     Animation anima, animaa;
     ImageView image;
     TextView splatext;
-    @BindView(R.id.loginregister) TextView mLoginRegister;
-    @BindView(R.id.loginBtn) TextView mLoginBtn;
-    @BindView(R.id.loginEmail) TextView mEmail;
-    @BindView(R.id.LoginPassword) TextView mPassword;
-    @BindView(R.id.progressBar) ProgressBar mProgressBar;
+    @BindView(R.id.loginregister)
+    TextView mLoginRegister;
+    @BindView(R.id.loginBtn)
+    TextView mLoginBtn;
+    @BindView(R.id.loginEmail)
+    TextView mEmail;
+    @BindView(R.id.LoginPassword)
+    TextView mPassword;
+    @BindView(R.id.progressBar)
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mLoginRegister.setOnClickListener(this);
@@ -63,15 +68,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         image.setAnimation(animaa);
         splatext.setAnimation(animaa);
-
-
     }
 
     @Override
     public void onClick(View view) {
 
         if (view == mLoginRegister) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
             finish();
         }
@@ -81,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             try {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
-                authenticateUser(email,password);
+                authenticateUser(email, password);
                 mProgressBar.setVisibility(View.VISIBLE);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -91,10 +94,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public  void authenticateUser(String email, String password) throws Exception {
-// Instantiate the RequestQueue.
+    public void authenticateUser(String email, String password) throws Exception {
+        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String postUrl ="https://ireporter-a.herokuapp.com/account/login";
+        String postUrl = "https://ireporter-a.herokuapp.com/account/login";
 
         JSONObject postData = new JSONObject();
         postData.put("email", email);
@@ -117,9 +120,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
                 mProgressBar.setVisibility(View.GONE);
-                Log.d("JWT_DECODED","error");
                 AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
                 alertDialog.setTitle("Invalid I-Reporter Credentials");
                 alertDialog.setIcon(R.drawable.warning_24);
