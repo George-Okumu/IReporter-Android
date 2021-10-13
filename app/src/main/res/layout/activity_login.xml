@@ -20,8 +20,8 @@
         android:layout_below="@+id/loginImage"
         android:layout_centerHorizontal="true"
         android:fontFamily="cursive"
-        android:textAppearance="@style/Widget.AppCompat.Spinner.Underlined"
         android:text="iReporter"
+        android:textAppearance="@style/Widget.AppCompat.Spinner.Underlined"
         android:textColor="@color/light_primary"
         android:textSize="50sp" />
 
@@ -55,6 +55,7 @@
         android:layout_centerVertical="true">
 
         <EditText
+            android:id="@+id/LoginPassword"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
@@ -85,6 +86,20 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/loginregister"
