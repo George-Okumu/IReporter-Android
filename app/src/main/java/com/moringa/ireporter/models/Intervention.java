@@ -64,4 +64,5 @@ public class Intervention {
     public void setIntervention_location(String intervention_location) {
         this.intervention_location = intervention_location;
     }
+
 }

@@ -1,28 +1,39 @@
 package com.moringa.ireporter.models;
 
+import com.moringa.ireporter.R;
+
+import org.parceler.Parcel;
+@Parcel
 public class RedFlag {
-    private String title;
-    private String description;
-    private String user;
-    private String redflag_image;
-    private String redflag_video;
-    private String redflag_location;
+     String subject;
+     String description;
+     String location;
+     int imageUrl;
+    // Default constructor
+    public RedFlag() {
+    }
 
-
-    public RedFlag(String title, String description, String user, String redflag_image, String redflag_video, String redflag_location) {
-        this.title = title;
+    public RedFlag(String subject, String description, String location) {
+        this.subject = subject;
         this.description = description;
-        this.redflag_image = redflag_image;
-        this.redflag_video = redflag_image;
-        this.redflag_location = redflag_location;
+        this.location = location;
+        this.imageUrl = R.drawable.corruption1;
     }
 
-    public String getTitle() {
-        return title;
+    public RedFlag(String subject, String description, String location, int image) {
+        this.subject = subject;
+        this.description = description;
+        this.location = location;
+        this.imageUrl = image;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+
     }
 
     public String getDescription() {
@@ -33,35 +44,19 @@ public class RedFlag {
         this.description = description;
     }
 
-    public String getUser() {
-        return user;
+    public String getLocation() {
+        return location;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getRedflag_image() {
-        return redflag_image;
+    public int getImageUrl() {
+        return imageUrl;
     }
 
-    public void setRedflag_image(String redflag_image) {
-        this.redflag_image = redflag_image;
-    }
-
-    public String getRedflag_video() {
-        return redflag_video;
-    }
-
-    public void setRedflag_video(String redflag_video) {
-        this.redflag_video = redflag_video;
-    }
-
-    public String getRedflag_location() {
-        return redflag_location;
-    }
-
-    public void setRedflag_location(String redflag_location) {
-        this.redflag_location = redflag_location;
+    public void setImageUrl(int imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
