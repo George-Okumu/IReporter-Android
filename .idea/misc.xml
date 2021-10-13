@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/drawable/tab_corners_shape.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_create_red.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_edit_record.xml" value="0.19322916666666667" />
@@ -13,6 +14,10 @@
         <entry key="app/src/main/res/layout/activity_red_flag.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_red_flag_item_detail.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_red_flag_item.xml" value="0.22644927536231885" />
+        <entry key="app/src/main/res/layout/activity_red_flag_item_detail.xml" value="0.340625" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_intervention.xml" value="0.22" />
