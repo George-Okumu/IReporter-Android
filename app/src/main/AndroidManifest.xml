@@ -38,6 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:exported="true" />
         <activity
             android:name=".ui.SplashActivity"

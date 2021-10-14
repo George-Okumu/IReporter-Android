@@ -3,11 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.15462962962962962" />
         <entry key="app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/drawable/tab_corners_shape.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_edit_record.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31741573033707865" />
         <entry key="app/src/main/res/layout/activity_red_flag_item.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_red_flag_item_detail.xml" value="0.340625" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
@@ -18,6 +19,9 @@
         <entry key="app/src/main/res/layout/red_flag_item.xml" value="0.16498486377396568" />
         <entry key="app/src/main/res/layout/view_red_flag_item.xml" value="0.16498486377396568" />
         <entry key="app/src/main/res/menu/bottom.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.4" />
+        <entry key="app/src/main/res/menu/menu2.xml" value="0.10462962962962963" />
+        <entry key="app/src/main/res/menu/overflow.xml" value="0.10462962962962963" />
         <entry key="app/src/main/res/xml/button_background.xml" value="0.19322916666666667" />
       </map>
     </option>
