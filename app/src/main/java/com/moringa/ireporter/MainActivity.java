@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import com.moringa.ireporter.models.RedFlag;
 import com.moringa.ireporter.ui.CreateIntActivity;
 import com.moringa.ireporter.ui.CreateRedActivity;
 import com.moringa.ireporter.ui.InterventionActivity;
+import com.moringa.ireporter.ui.LoginActivity;
 import com.moringa.ireporter.ui.RedFlagActivity;
 
 import java.util.ArrayList;
@@ -95,13 +97,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
+
         inflater.inflate(R.menu.overflow, menu);
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
+            case R.id.action_logout:
+                SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.USER_TOKEN,"");
+                editor.apply();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
             case R.id.Home:
                 Toast.makeText(this, "Home Selected", Toast.LENGTH_SHORT);
                 return true;

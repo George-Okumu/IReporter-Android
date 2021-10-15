@@ -1,10 +1,13 @@
 package com.moringa.ireporter.ui;
+import static com.moringa.ireporter.Constants.SHARED_PREFS;
+import static com.moringa.ireporter.Constants.USER_TOKEN;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.moringa.ireporter.Constants;
 import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
 
@@ -31,6 +35,7 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static int SPLASH_SCREEN = 5000;
+    SharedPreferences sharedPreferences;
 
     Animation anima, animaa;
     ImageView image;
@@ -66,6 +71,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user exist and log in automatically
+        sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        String token = sharedPreferences.getString(USER_TOKEN,"");
+        if (!token.equals("")) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
     public void onClick(View view) {
 
         if (view == mLoginRegister) {
@@ -90,6 +108,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void authenticateUser(String email, String password) throws Exception {
+
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String postUrl = "https://ireporter-a.herokuapp.com/account/login";
@@ -104,6 +123,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     mProgressBar.setVisibility(View.GONE);
                     if (response.getString("message").equals("Login Successfull")) {
+                        // Save user token to shared preference
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(USER_TOKEN,response.getString("token"));
+                        editor.apply();
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.CreateRedActivity"
+    android:background="@color/dark_primary"
     android:orientation="vertical"
-    android:background="@color/dark_primary">
+    tools:context=".ui.CreateRedActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/signUpImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/detective"
-        android:id="@+id/signUpImage"/>
+        android:src="@drawable/detective" />
 
 
     <TextView
@@ -29,80 +29,84 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Let's Create A New Record"
-        android:textSize="20sp"
-        android:textColor="@color/light_primary"/>
+        android:textColor="@color/light_primary"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Subject"
-            android:id="@+id/subjectRed"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+            android:hint="Subject">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/subjectRed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Description"
             app:counterEnabled="true"
-            app:counterMaxLength="150"
-            android:id="@+id/descriptionRed"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+            app:counterMaxLength="150">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descriptionRed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location"
-            android:id="@+id/locationRed"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+            android:hint="Location">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/locationRed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/uploadImg"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload Image"
-            android:id="@+id/uploadbtn"
-            style="@style/TextAppearance.MaterialComponents.Button"
+            android:drawableEnd="@drawable/ic_baseline_image_24"
             android:drawableRight="@drawable/ic_baseline_image_24"
-            android:drawableEnd="@drawable/ic_baseline_image_24"/>
+            android:text="Upload Image" />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload Video"
             android:id="@+id/videoBtn"
             style="@style/TextAppearance.MaterialComponents.Button"
-            android:drawableRight="@drawable/ic_baseline_video_library_24"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_video_library_24"
+            android:text="Upload Video" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/createRed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Record"
-        android:id="@+id/createRed"
-        android:textStyle="bold"
-        android:textColor="@color/dark_primary"/>
+        android:textColor="@color/dark_primary"
+        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

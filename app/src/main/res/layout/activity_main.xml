@@ -10,7 +10,6 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tab_corners_shape"
         android:paddingVertical="20dp"
         app:itemIconTint="@color/tab_item"
         app:itemTextColor="@color/light_primary"
