@@ -58,7 +58,6 @@ import retrofit2.Retrofit;
 
 public class CreateRedActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int REQUEST_IMAGE_CAPTURE = 111;
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 11;
 
     String filepth="dummy";
