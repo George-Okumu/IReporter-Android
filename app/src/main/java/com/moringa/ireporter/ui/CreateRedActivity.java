@@ -1,22 +1,30 @@
 package com.moringa.ireporter.ui;
 
-import static android.os.Environment.getExternalStoragePublicDirectory;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.loader.content.CursorLoader;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
@@ -30,8 +38,10 @@ import android.widget.Toast;
 
 import com.auth0.android.jwt.Claim;
 import com.auth0.android.jwt.JWT;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 import com.moringa.ireporter.Constants;
+import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
 import com.moringa.ireporter.adapters.RedFlagAdapter;
 import com.moringa.ireporter.models.DecodeJWT;
@@ -51,48 +61,16 @@ import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.http.Multipart;
+import retrofit2.http.Url;
 
-public class CreateRedActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private static final int CAMERA_PERMISSION_REQUEST_CODE = 11;
-
-    String filepth="dummy";
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 2) {
-                imageUri = data.getData();
-                mImage.setImageURI(imageUri);
-
-
-                String[] filePathCol = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(imageUri,filePathCol,null,null,null);
-                if ( cursor != null) {
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndexOrThrow(filePathCol[0]);
-                    filepth = cursor.getString(columnIndex);
-                    cursor.close();
-                    Log.d("filepath",filepth);
-                }
-
-
-
-            }
-        }
-    }
-
-    RedFlag redFlagData;
-    TextInputLayout subject, description1, location;
-    com.google.android.material.button.MaterialButton uploadImage, uploadVideo;
-    private List<RedFlag> mRedFlag;
-    private RecyclerView recyclerViewRed;
-    RedFlagAdapter mAdapter;
+public class CreateRedActivity extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+    private static final int PERMISSION_REQUEST_CODE = 200;
 
     @BindView(R.id.subjectRed) EditText mSubject;
     @BindView(R.id.descriptionRed) EditText mDescription;
@@ -101,49 +79,37 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.createRed) Button mCreateRedFlag;
     @BindView(R.id.image) ImageView mImage;
 
-    ActivityResultLauncher<String> getImageUri;
     String imagePath ;
     Uri imageUri;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_red);
         ButterKnife.bind(this);
         mUploadImage.setOnClickListener(this);
         mCreateRedFlag.setOnClickListener(this);
-
-//        getImageUri = registerForActivityResult(new ActivityResultContracts.GetContent(),
-//                new ActivityResultCallback<Uri>() {
-//                    @Override
-//                    public void onActivityResult(Uri uri) {
-//                        // Handle the returned Uri
-//                        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
-//
-//                        DecodeJWT.decoded( prefs.getString(Constants.USER_TOKEN,""));
-//                        JWT parsedJWT = new JWT(prefs.getString(Constants.USER_TOKEN,""));
-//                        Claim subscriptionMetaData = parsedJWT.getClaim("username");
-//                        String parsedValue = subscriptionMetaData.asString();
-//                        mUploadImage.setText(parsedValue + uri.getLastPathSegment());
-//                    }
-//                });
     }
 
     @Override
     public void onClick(View v) {
         if (v == mUploadImage) {
-
-            Intent galleryIntent = new Intent();
-            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-            galleryIntent.setType("image/*");
-            startActivityForResult(galleryIntent,2);
+            Intent intent = new Intent(Intent.ACTION_PICK).setType("image/*");
+            if (!checkPermission()) {
+                getImageUri.launch(intent);
+            } else {
+                if (checkPermission()) {
+                    requestPermissionAndContinue();
+                } else {
+                    getImageUri.launch(intent);
+                }
+            }
         }
 
         if (v == mCreateRedFlag) {
 
-            if (imageUri == null) {
+            if (imagePath == null) {
                 Toast.makeText(getApplicationContext(),"Image required",Toast.LENGTH_LONG).show();
                 return;
             } else if (mSubject.getText().toString().equals("")) {
@@ -161,105 +127,130 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void dispatchPictureTakenAction() {
-        Intent takePic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePic.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            photoFile = createPhotoFile();
-            if (photoFile != null) {
-                imagePath = photoFile.getAbsolutePath();
-                Uri photoUri = FileProvider.getUriForFile(CreateRedActivity.this,"sss",photoFile);
-                takePic.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                startActivityForResult(takePic,1);
-            }
-
-
-        }
-    }
-
-    private File createPhotoFile() {
-        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS);
-        File image = null;
-        try {
-            image = File.createTempFile(name,".jpg",storageDir);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
-
     private void uploadRedFlag() {
-        File file = new File(filepth);
 
-        Log.d("file",imageUri.getPath());
-       // RequestBody imageData = RequestBody.create(MediaType.parse("image/*"),file);
-        //MultipartBody.Part part = MultipartBody.Part.createFormData("redFlag_image", file.getName(),imageData);
-
-         RequestBody imageData = RequestBody.create(MediaType.parse(getContentResolver().getType(imageUri)),file);
-        MultipartBody.Part part = MultipartBody.Part.createFormData("redFlag_image", file.getName(),imageData);
-
-
-        RequestBody subject = RequestBody.create(MediaType.parse("text/plain"),mSubject.getText().toString());
-        RequestBody desc = RequestBody.create(MediaType.parse("text/plain"),mDescription.getText().toString());
+        File file = new File(imagePath);
+        RequestBody img = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+        MultipartBody.Part reqBody = MultipartBody.Part.createFormData("redFlag_image", file.getName(),img);
+        RequestBody title = RequestBody.create(MediaType.parse("text/plain"),mSubject.getText().toString());
+        RequestBody description = RequestBody.create(MediaType.parse("text/plain"),mDescription.getText().toString());
         RequestBody location = RequestBody.create(MediaType.parse("text/plain"),mLocation.getText().toString());
+
+        // Get token
+        SharedPreferences sharedPrefs = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
+        String token = sharedPrefs.getString(Constants.USER_TOKEN,"");
 
         Retrofit retrofit = IreporterClientApi.getRetrofit();
         UploadService uploadService = retrofit.create(UploadService.class);
-        Call call = uploadService.upload(part,desc,subject,location,"Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IkthcnV1MiIsImlzX2FkbWluIjpmYWxzZSwiaWQiOjExLCJleHAiOjE2MzY4ODAwNDMsImVtYWlsIjoiYnJpYW4ubXVjaG9yaTFAc3R1ZGVudC5tb3Jpbmdhc2Nob29sLmNvbSJ9.u8hSLVEvnUGuxVQG1RHwzhrwd3qJ0VTRtLLqwXL0yZ8" );
-        call.enqueue(new Callback() {
+        Call call = uploadService.upload(reqBody,description,title,location,"Bearer " + token);
+        call.enqueue(new Callback<RedFlag>() {
             @Override
             public void onResponse(Call call, Response response) {
-                Log.d("Response",response.toString());
+                Toast.makeText(getApplicationContext(), "Red Flag saved",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(CreateRedActivity.this, MainActivity.class));
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-               Log.d("Response",t.toString());
+               Log.d("Failure",t.toString());
 
             }
         });
     }
 
-    private boolean validate(TextInputLayout textInputLayout){
-        if (textInputLayout.getEditText().toString().trim().length()>0) {
-            return true;
-        }
-        textInputLayout.setError("Fill this");
-        textInputLayout.requestFocus();
-        return false;
-    }
-
-    private void createRed() {
-        (IreporterClientApi.getClient().create(subject.getEditText().toString().trim(),
-                description1.getEditText().toString().trim(),
-                location.getEditText().toString().trim(),
-                "Karuu")).enqueue(new Callback<RedFlag>() {
-            @Override
-            public void onResponse(Call<RedFlag> call, Response<RedFlag> response) {
-                redFlagData = response.body();
-                Intent intent = new Intent(CreateRedActivity.this, RedFlagActivity.class);
-                startActivity(intent);
-                if (response.isSuccessful()) {
-                  mAdapter = new RedFlagAdapter(CreateRedActivity.this, mRedFlag);
-                  recyclerViewRed.setAdapter(mAdapter);
-                  RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CreateRedActivity.this);
-                  recyclerViewRed.setLayoutManager(layoutManager);
-                  recyclerViewRed.setHasFixedSize(true);
-
-                  showRedFlag();
+    ActivityResultLauncher<Intent> getImageUri = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        Uri selectedImageUri = data.getData( );
+                        String picturePath = getPath(getApplicationContext( ), selectedImageUri );
+                        imagePath = picturePath;
+                        //mImage.setImageURI(selectedImageUri);
+                        Glide.with(getApplicationContext()).load(selectedImageUri).into(mImage);
+                    }
                 }
             }
+    );
 
-            @Override
-            public void onFailure(Call<RedFlag> call, Throwable t) {
-                Log.d("response", t.getStackTrace().toString());
+    public String getPath(Context context, Uri uri ) {
+        String result = null;
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        CursorLoader loader = new CursorLoader(getApplicationContext(),uri,filePathColumn,null,null,null);
+        Cursor cursor = loader.loadInBackground();
+        int col_index = cursor.getColumnIndexOrThrow( MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        result = cursor.getString(col_index);
+        cursor.close();
+        return result;
+    }
+
+    private boolean checkPermission() {
+
+        return ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                ;
+    }
+
+    private void requestPermissionAndContinue() {
+        if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, WRITE_EXTERNAL_STORAGE)
+                    && ActivityCompat.shouldShowRequestPermissionRationale(this, READ_EXTERNAL_STORAGE)) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                alertBuilder.setCancelable(true);
+                alertBuilder.setTitle("getString(R.string.permission_necessary)");
+                alertBuilder.setMessage("R.string.storage_permission_is_encessary_to_wrote_event");
+                alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(CreateRedActivity.this, new String[]{WRITE_EXTERNAL_STORAGE
+                                , READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+                    }
+                });
+                AlertDialog alert = alertBuilder.create();
+                alert.show();
+                Log.e("", "permission denied, show dialog");
+            } else {
+                ActivityCompat.requestPermissions(CreateRedActivity.this, new String[]{WRITE_EXTERNAL_STORAGE,
+                        READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
             }
-        });
-    }
-    private void showRedFlag() {
-        recyclerViewRed.setVisibility(View.VISIBLE);
+        } else {
+            openActivity();
+        }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (permissions.length > 0 && grantResults.length > 0) {
+
+                boolean flag = true;
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    openActivity();
+                } else {
+                    finish();
+                }
+
+            } else {
+                finish();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private void openActivity() {
+        //add your further process after giving permission or to download images from remote server.
+    }
 
 }
