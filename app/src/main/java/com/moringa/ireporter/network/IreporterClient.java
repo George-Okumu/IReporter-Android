@@ -5,7 +5,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class IreporterClientApi {
+public class IreporterClient {
 
     public static String BASE_URL ="https://ireporter-a.herokuapp.com/api/";
     private static Retrofit retrofit;
@@ -13,7 +13,7 @@ public class IreporterClientApi {
     public static Retrofit getRetrofit() {
         // Define Interceptors
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.level(HttpLoggingInterceptor.Level.HEADERS);
+        loggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient  = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)

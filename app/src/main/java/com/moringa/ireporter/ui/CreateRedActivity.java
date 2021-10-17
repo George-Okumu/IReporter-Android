@@ -21,13 +21,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -36,38 +32,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.auth0.android.jwt.Claim;
-import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
-import com.google.android.material.textfield.TextInputLayout;
 import com.moringa.ireporter.Constants;
 import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
-import com.moringa.ireporter.adapters.RedFlagAdapter;
-import com.moringa.ireporter.models.DecodeJWT;
 import com.moringa.ireporter.models.RedFlag;
-import com.moringa.ireporter.network.IreporterClientApi;
-import com.moringa.ireporter.network.UploadService;
+import com.moringa.ireporter.network.IreporterClient;
+import com.moringa.ireporter.network.IreporterApi;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.http.Multipart;
-import retrofit2.http.Url;
 
 public class CreateRedActivity extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -140,9 +123,9 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         SharedPreferences sharedPrefs = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
         String token = sharedPrefs.getString(Constants.USER_TOKEN,"");
 
-        Retrofit retrofit = IreporterClientApi.getRetrofit();
-        UploadService uploadService = retrofit.create(UploadService.class);
-        Call call = uploadService.upload(reqBody,description,title,location,"Bearer " + token);
+        Retrofit retrofit = IreporterClient.getRetrofit();
+        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
+        Call call = ireporterApi.upload(reqBody,description,title,location,"Bearer " + token);
         call.enqueue(new Callback<RedFlag>() {
             @Override
             public void onResponse(Call call, Response response) {
