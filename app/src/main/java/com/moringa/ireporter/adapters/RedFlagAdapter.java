@@ -26,8 +26,6 @@ import butterknife.ButterKnife;
 public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagViewHolder> {
     private List<RedFlag> mRedFlags;
     private Context mContext;
-
-
     public RedFlagAdapter(Context Context , List<RedFlag> redFlags){
         this.mRedFlags = redFlags;
         this.mContext = Context;
@@ -68,7 +66,10 @@ public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagV
             mSubjectRed.setText(redFlag.getDescription());
             mLocationRed.setText(redFlag.getLocation());
             // Add image
-            Picasso.get().load(redFlag.getImageUrl()).into(mImageRed);
+            Picasso.get().load(redFlag.getImageUrl())
+                    .fit()
+                    .centerCrop()
+                    .into(mImageRed);
         }
 
         @Override

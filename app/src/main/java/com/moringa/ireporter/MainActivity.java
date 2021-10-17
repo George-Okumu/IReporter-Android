@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.ireporter.adapters.RedFlagAdapter;
 import com.moringa.ireporter.models.RedFlag;
+import com.moringa.ireporter.network.IreporterApi;
+import com.moringa.ireporter.network.IreporterClient;
 import com.moringa.ireporter.ui.CreateIntActivity;
 import com.moringa.ireporter.ui.CreateRedActivity;
 import com.moringa.ireporter.ui.InterventionActivity;
@@ -28,6 +31,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     private List<RedFlag> mRedFlags = new ArrayList<>();
@@ -39,11 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         // Fetch redflags
-        mRedFlags.add(new RedFlag("Corruption in Homabay","Officer1 taking bribe","Homabay"));
-        mRedFlags.add(new RedFlag("Corruption in Kisumu County","Officer2 taking bribe","Kisumu",R.drawable.corruption2));
-
         // Initialize recyler view
         mAdapter = new RedFlagAdapter(MainActivity.this, mRedFlags);
         mRecyclerView.setAdapter(mAdapter);
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setVisibility(View.VISIBLE);
+        redflagRes();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.Home);
@@ -78,19 +83,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //Bottom Nav
-//        BottomNavigationView btnNav = findViewById(R.id.bottomNavigationview);
-//        btnNav.setOnNavigationItemReselectedListener(navListener);
-//
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fragment_layout, new HomeFragment()).commit();
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
     }
 
 
@@ -139,6 +137,30 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void redflagRes() {
+        Retrofit retrofit = IreporterClient.getRetrofit();
+        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
+        Call<List<RedFlag>> call = ireporterApi.getRedFlags();
+        call.enqueue(new Callback<List<RedFlag>>() {
+            @Override
+            public void onResponse(Call<List<RedFlag>> call, Response<List<RedFlag>> response) {
+                if (response.isSuccessful()) {
+                    for (RedFlag redFlag: response.body() ) {
+                        mRedFlags.add(redFlag);
+                    }
+                    //mRedFlags = response.body();
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RedFlag>> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }
