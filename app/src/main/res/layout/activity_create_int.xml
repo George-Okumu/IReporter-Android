@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.CreateIntActivity"
     android:orientation="vertical"
-    android:background="@color/dark_primary">
+    android:background="@color/primary">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="70dp"
@@ -91,17 +91,17 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload Video"
-            android:id="@+id/videoBtn"
+            android:text="Upload Location"
+            android:id="@+id/locateBtn"
             style="@style/TextAppearance.MaterialComponents.Button"
-            android:drawableRight="@drawable/ic_baseline_video_library_24"/>
+            android:drawableRight="@drawable/ic_baseline_add_location_24"/>
 
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Record"
+        android:text="Create Intervention"
         android:id="@+id/createInt"
         android:textStyle="bold"
         android:textColor="@color/dark_primary" />

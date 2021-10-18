@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,26 +37,34 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends AppCompatActivity {
-    private List<RedFlag> mRedFlags = new ArrayList<>();
-    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-    RedFlagAdapter mAdapter;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+//    private List<RedFlag> mRedFlags = new ArrayList<>();
+//    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+//    RedFlagAdapter mAdapter;
+@BindView(R.id.redFlagBtn) Button mRedFlagBtn;
+@BindView(R.id.intBtn) Button mIntBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
+
         // Fetch redflags
         // Initialize recyler view
-        mAdapter = new RedFlagAdapter(MainActivity.this, mRedFlags);
-        mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setVisibility(View.VISIBLE);
-        redflagRes();
+//        mAdapter = new RedFlagAdapter(MainActivity.this, mRedFlags);
+//        mRecyclerView.setAdapter(mAdapter);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+//        mRecyclerView.setLayoutManager(layoutManager);
+//        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setVisibility(View.VISIBLE);
+//        redflagRes();
 
+
+        mRedFlagBtn.setOnClickListener(this);
+        mIntBtn.setOnClickListener(this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.Home);
@@ -139,28 +148,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void redflagRes() {
-        Retrofit retrofit = IreporterClient.getRetrofit();
-        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
-        Call<List<RedFlag>> call = ireporterApi.getRedFlags();
-        call.enqueue(new Callback<List<RedFlag>>() {
-            @Override
-            public void onResponse(Call<List<RedFlag>> call, Response<List<RedFlag>> response) {
-                if (response.isSuccessful()) {
-                    for (RedFlag redFlag: response.body() ) {
-                        mRedFlags.add(redFlag);
-                    }
-                    //mRedFlags = response.body();
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<RedFlag>> call, Throwable t) {
-
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        if (view == mRedFlagBtn) {
+            Intent intent = new Intent(MainActivity.this, CreateRedActivity.class);
+            startActivity(intent);
+        }
+        if (view == mIntBtn) {
+            Intent intent = new Intent(MainActivity.this, CreateIntActivity.class);
+            startActivity(intent);
+        }
 
     }
+
+//    private void redflagRes() {
+//        Retrofit retrofit = IreporterClient.getRetrofit();
+//        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
+//        Call<List<RedFlag>> call = ireporterApi.getRedFlags();
+//        call.enqueue(new Callback<List<RedFlag>>() {
+//            @Override
+//            public void onResponse(Call<List<RedFlag>> call, Response<List<RedFlag>> response) {
+//                if (response.isSuccessful()) {
+//                    for (RedFlag redFlag: response.body() ) {
+//                        mRedFlags.add(redFlag);
+//                    }
+//                    //mRedFlags = response.body();
+//                    mAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<RedFlag>> call, Throwable t) {
+//
+//            }
+//        });
+
+//    }
 
 }
