@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.moringa.ireporter.Constants;
 import com.moringa.ireporter.MainActivity;
+import com.moringa.ireporter.MapsActivity;
 import com.moringa.ireporter.R;
 import com.moringa.ireporter.models.RedFlag;
 import com.moringa.ireporter.network.IreporterClient;
@@ -61,6 +62,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.uploadImg) Button mUploadImage;
     @BindView(R.id.createRed) Button mCreateRedFlag;
     @BindView(R.id.image) ImageView mImage;
+    @BindView(R.id.locationBtn) Button mLocationBtn;
 
     String imagePath ;
     Uri imageUri;
@@ -73,6 +75,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this);
         mUploadImage.setOnClickListener(this);
         mCreateRedFlag.setOnClickListener(this);
+        mLocationBtn.setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +111,11 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
             }
         }
 
+        if (v == mLocationBtn) {
+            Intent intent = new Intent(CreateRedActivity.this, MapsActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     private void uploadRedFlag() {
@@ -130,7 +138,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getApplicationContext(), "Red Flag saved",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(CreateRedActivity.this, MainActivity.class));
+                startActivity(new Intent(CreateRedActivity.this, RedFlagActivity.class));
             }
 
             @Override

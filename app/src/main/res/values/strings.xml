@@ -2,4 +2,5 @@
     <string name="app_name">IReporter</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up_link">Don\'t have an account? <u>Create One</u></string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

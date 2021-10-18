@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_primary"
+    android:background="@color/primary"
     android:orientation="vertical"
     tools:context=".ui.CreateRedActivity">
 
@@ -89,12 +89,12 @@
             android:text="Upload Image" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/videoBtn"
+            android:id="@+id/locationBtn"
             style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_video_library_24"
-            android:text="Upload Video" />
+            android:drawableRight="@drawable/ic_baseline_add_location_24"
+            android:text="Upload Location" />
 
     </LinearLayout>
 
@@ -102,7 +102,7 @@
         android:id="@+id/createRed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Record"
+        android:text="Create Red-Flag"
         android:textColor="@color/dark_primary"
         android:textStyle="bold" />
     <ImageView

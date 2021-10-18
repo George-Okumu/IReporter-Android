@@ -53,6 +53,7 @@ public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagV
         @BindView(R.id.imageRed) ImageView mImageRed;
         @BindView(R.id.subjectRed) TextView mSubjectRed;
         @BindView(R.id.locationRed) TextView mLocationRed;
+
         private Context mContext;
 
         public RedFlagViewHolder(@NonNull View itemView) {
