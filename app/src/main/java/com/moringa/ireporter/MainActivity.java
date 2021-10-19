@@ -2,8 +2,11 @@ package com.moringa.ireporter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +19,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
+import com.moringa.ireporter.adapters.PagerAdapter;
 import com.moringa.ireporter.adapters.RedFlagAdapter;
 import com.moringa.ireporter.models.RedFlag;
 import com.moringa.ireporter.network.IreporterApi;
@@ -41,14 +48,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private List<RedFlag> mRedFlags = new ArrayList<>();
 //    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 //    RedFlagAdapter mAdapter;
-@BindView(R.id.redFlagBtn) Button mRedFlagBtn;
-@BindView(R.id.intBtn) Button mIntBtn;
+
+
+    TabLayout tabLayout;
+    TabItem mHome,mRedFlagg,mIntervention;
+    PagerAdapter pagerAdapter;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
 
 
 
@@ -63,34 +74,72 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        redflagRes();
 
 
-        mRedFlagBtn.setOnClickListener(this);
-        mIntBtn.setOnClickListener(this);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.Home);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        bottomNavigationView.setSelectedItemId(R.id.Home);
+//
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.Home:
+//                        return true;
+//
+//                    case R.id.Red:
+//                        startActivity(new Intent(getApplicationContext()
+//                                ,RedFlagActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//
+//                    case R.id.Int:
+//                        startActivity(new Intent(getApplicationContext()
+//                                ,InterventionActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                }
+//                return false;
+//            }
+//        });
+
+
+//        mToolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(mToolbar);
+
+        mHome = findViewById(R.id.home);
+        mRedFlagg = findViewById(R.id.redflagg);
+        mIntervention = findViewById(R.id.inter);
+
+
+        ViewPager viewPager = findViewById(R.id.fragment_container);
+        tabLayout = findViewById(R.id.include);
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 3);
+        viewPager.setAdapter(pagerAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.Home:
-                        return true;
-
-                    case R.id.Red:
-                        startActivity(new Intent(getApplicationContext()
-                                ,RedFlagActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.Int:
-                        startActivity(new Intent(getApplicationContext()
-                                ,InterventionActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 0
+                        || tab.getPosition() == 1
+                        || tab.getPosition() == 2);
+                {
+                    pagerAdapter.notifyDataSetChanged();
                 }
-                return false;
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
 
@@ -150,16 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view == mRedFlagBtn) {
-            Intent intent = new Intent(MainActivity.this, CreateRedActivity.class);
-            startActivity(intent);
-        }
-        if (view == mIntBtn) {
-            Intent intent = new Intent(MainActivity.this, CreateIntActivity.class);
-            startActivity(intent);
-        }
 
     }
+
 
 //    private void redflagRes() {
 //        Retrofit retrofit = IreporterClient.getRetrofit();

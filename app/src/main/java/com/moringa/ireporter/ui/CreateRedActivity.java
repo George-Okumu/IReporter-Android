@@ -106,7 +106,11 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(getApplicationContext(),"Description required",Toast.LENGTH_LONG).show();
                 mDescription.setError("Required");
                 return;
-            }else {
+            }else if (mLocation.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(),"Location required",Toast.LENGTH_LONG).show();
+                mLocation.setError("Required");
+                return;
+            }   else {
                 uploadRedFlag();
             }
         }
@@ -133,12 +137,12 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
 
         Retrofit retrofit = IreporterClient.getRetrofit();
         IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
-        Call call = ireporterApi.upload(reqBody,description,title,location,"Bearer " + token);
+        Call call = ireporterApi.upload(reqBody,title,description,location,"Bearer " + token);
         call.enqueue(new Callback<RedFlag>() {
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getApplicationContext(), "Red Flag saved",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(CreateRedActivity.this, RedFlagActivity.class));
+                startActivity(new Intent(CreateRedActivity.this, RedFlagFragment.class));
             }
 
             @Override
