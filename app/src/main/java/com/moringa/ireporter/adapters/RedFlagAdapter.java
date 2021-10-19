@@ -51,6 +51,7 @@ public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagV
     public  class RedFlagViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.imageRed) ImageView mImageRed;
+        @BindView(R.id.descriptionRed)TextView mDescriptionRed;
         @BindView(R.id.subjectRed) TextView mSubjectRed;
         @BindView(R.id.locationRed) TextView mLocationRed;
 
@@ -64,7 +65,8 @@ public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagV
         }
 
         public void bindRedFlag(RedFlag redFlag){
-            mSubjectRed.setText(redFlag.getDescription());
+            mSubjectRed.setText(redFlag.getTitle());
+            mDescriptionRed.setText(redFlag.getDescription());
             mLocationRed.setText(redFlag.getLocation());
             // Add image
             Picasso.get().load(redFlag.getImageUrl())

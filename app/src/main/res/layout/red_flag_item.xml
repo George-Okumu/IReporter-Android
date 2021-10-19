@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
     android:background="@color/dark_primary"
-    android:orientation="horizontal"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,19 +24,24 @@
                 android:id="@+id/subjectRed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="subject"
+                android:text="Subject"
                 android:padding="5dp"
                 android:textColor="@color/black"
-                android:textSize="24dp" >
+                android:textSize="20dp" >
 
             </com.google.android.material.textview.MaterialTextView>
 
-            <View
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/descriptionRed"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#ffffff">
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Description"
+                android:textSize="20dp" >
 
-            </View>
+            </com.google.android.material.textview.MaterialTextView>
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/locationRed"
@@ -47,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="location"
-                android:textSize="24dp" >
+                android:textSize="20dp" >
 
             </com.google.android.material.textview.MaterialTextView>
 
