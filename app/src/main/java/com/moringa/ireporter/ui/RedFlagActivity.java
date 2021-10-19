@@ -2,13 +2,12 @@ package com.moringa.ireporter.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,24 +19,19 @@ import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
 import com.moringa.ireporter.adapters.RedFlagAdapter;
 import com.moringa.ireporter.models.RedFlag;
-import com.moringa.ireporter.network.IreporterApi;
-import com.moringa.ireporter.network.IreporterClient;
+import com.moringa.ireporter.network.ApiCalls;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class RedFlagActivity extends AppCompatActivity {
-    private List<RedFlag> mRedFlags = new ArrayList<>();
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    private List<RedFlag> mRedFlags = null;
     RedFlagAdapter mAdapter;
+    private Handler mHandler = new Handler();
+
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,25 +39,11 @@ public class RedFlagActivity extends AppCompatActivity {
         setContentView(R.layout.activity_red_flag);
         ButterKnife.bind(this);
 
-        // Fetch redflags
-        // Initialize recyler view
-        mAdapter = new RedFlagAdapter(RedFlagActivity.this, mRedFlags);
-        mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RedFlagActivity.this);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setVisibility(View.VISIBLE);
-        redflagRes();
-
+        ApiCalls.getRedFlags();
+        waitData.run();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.Red);
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -123,33 +103,30 @@ public class RedFlagActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
             default:
                 return super.onOptionsItemSelected(item);
-
-
         }
     }
 
-
-    private void redflagRes() {
-        Retrofit retrofit = IreporterClient.getRetrofit();
-        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
-        Call<List<RedFlag>> call = ireporterApi.getRedFlags();
-        call.enqueue(new Callback<List<RedFlag>>() {
-            @Override
-            public void onResponse(Call<List<RedFlag>> call, Response<List<RedFlag>> response) {
-                if (response.isSuccessful()) {
-                    for (RedFlag redFlag: response.body() ) {
-                        mRedFlags.add(redFlag);
-                    }
-                    //mRedFlags = response.body();
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<RedFlag>> call, Throwable t) {
-
-            }
-        });
-
+    private void setupRecycerView() {
+        mAdapter = new RedFlagAdapter(RedFlagActivity.this, mRedFlags);
+        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RedFlagActivity.this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
+
+
+
+    private Runnable waitData = new Runnable() {
+        @Override
+        public void run() {
+            if (mRedFlags != null) {
+                setupRecycerView();
+                mHandler.removeCallbacks(this);
+            }
+            mRedFlags = ApiCalls.redFlags;
+            mHandler.postDelayed(this,1000);
+        }
+    };
+
 }
