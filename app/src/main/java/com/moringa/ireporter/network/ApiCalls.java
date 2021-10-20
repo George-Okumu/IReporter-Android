@@ -14,11 +14,16 @@ import retrofit2.Retrofit;
 
 public class ApiCalls {
     public static List<RedFlag> redFlags;
-    private static final String TAG = "ApiCalls";
+    public static RedFlag redFlag;
+    private static Retrofit retrofit = IreporterClient.getRetrofit();;
+    private static IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
+
+    // Testing a simpler way
+    public static Retrofit retrofit1 = IreporterClient.getRetrofit();
+    public static IreporterApi ireporter1 = retrofit1.create(IreporterApi.class);
+
 
     public static void getRedFlags() {
-        Retrofit retrofit = IreporterClient.getRetrofit();
-        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
         Call<List<RedFlag>> call = ireporterApi.getRedFlags();
         call.enqueue(new Callback<List<RedFlag>>() {
             @Override
@@ -28,7 +33,6 @@ public class ApiCalls {
                     for (RedFlag redFlag: response.body() ) {
                         redFlags.add(redFlag);
                     }
-                    Log.d(TAG,String.valueOf(redFlags.size()));
                 }
             }
             @Override
@@ -38,4 +42,20 @@ public class ApiCalls {
         });
     }
 
+    public static Callback<RedFlag> getRedFlagById (int id) {
+        Call <RedFlag> call = ireporterApi.getRedFlagById(id);
+        Callback res = new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        };
+        return res;
+
+    }
 }

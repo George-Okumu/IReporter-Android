@@ -13,6 +13,8 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_red_flag.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_red_flag_create.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/layout/activity_red_flag_edit_actitvity.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/layout/activity_red_flag_item.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_red_flag_item_detail.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
