@@ -143,7 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapClick(@NonNull LatLng latLng) {
         Log.d(TAG, "onMapLongClick: " + latLng.toString());
         try{
-            List<Address> addresses = geocoder.getFromLocationName("kenya", 1);
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude,  latLng.longitude, 1);
             if (addresses.size() > 0) {
                 Address address = addresses.get(0);
                 String streetAddress = address.getAddressLine(0);
@@ -172,7 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d(TAG, "onMarkerDragEnd: ");
         LatLng latLng = marker.getPosition();
         try{
-            List<Address> addresses = geocoder.getFromLocationName("kenya", 1);
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
             if (addresses.size() > 0) {
                 Address address = addresses.get(0);
                 String streetAddress = address.getAddressLine(0);
