@@ -14,11 +14,9 @@
         android:layout_height="?attr/actionBarSize"
         app:tabBackground="@color/white"
         android:layout_marginTop="0dp"
-        app:tabGravity="center"
         android:backgroundTint="@color/white"
         app:tabIndicatorColor="@color/teal_200"
         app:tabIndicatorHeight="3.5dp"
-        app:tabMode="scrollable"
         app:tabSelectedTextColor="#618C8F"
         app:tabTextColor="@color/primary">
 
