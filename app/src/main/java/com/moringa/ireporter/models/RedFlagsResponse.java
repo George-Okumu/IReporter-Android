@@ -11,7 +11,7 @@ import java.util.List;
 public class RedFlagsResponse {
     @SerializedName("redflags")
     @Expose
-    private List<RedFlag> redFlags = null;
+    List<RedFlag> redFlags = null;
 
     //Default Cosntructor
     public RedFlagsResponse() {
