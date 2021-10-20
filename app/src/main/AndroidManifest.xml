@@ -48,9 +48,6 @@
             android:name=".ui.CreateIntActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.RedFlagCreateActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.InterventionActivity"
             android:exported="true" />
         <activity
