@@ -54,7 +54,6 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
         if ( v == mEditBtn) {
@@ -62,7 +61,6 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
                 mEditBtn.setText("CANCEL");
                 mSaveBtn.setVisibility(View.VISIBLE);
                 // Make text Boxes Editable
-                mSubject.setFocusable(View.FOCUSABLE);
 
             } else if (mEditBtn.getText().toString().equals("CANCEL")) {
                 Intent intent = new Intent(RedFlagItemDetail.this, RedFlagItemDetail.class);
@@ -79,11 +77,9 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void assignViews(RedFlag redFlag) {
         mStatus.setText(redFlag.getStatus());
         mSubject.setText(redFlag.getTitle());
-        mSubject.setFocusable(View.NOT_FOCUSABLE);
         mDescription.setText(redFlag.getDescription());
         mLocation.setText(redFlag.getLocation());
         // Load image into mImage view
