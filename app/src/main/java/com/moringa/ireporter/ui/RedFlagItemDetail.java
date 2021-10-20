@@ -39,7 +39,6 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
     @BindView(R.id.tv_location) TextView mLocation;
     @BindView(R.id.img_image) ImageView mImage;
     @BindView(R.id.btn_edit) Button mEditBtn;
-    @BindView(R.id.btn_save) Button mSaveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,29 +49,16 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
         assignViews(mRedFlag);
 
         mEditBtn.setOnClickListener(this);
-        mSaveBtn.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
         if ( v == mEditBtn) {
-            if (mEditBtn.getText().toString().equals("EDIT")) {
-                mEditBtn.setText("CANCEL");
-                mSaveBtn.setVisibility(View.VISIBLE);
-                // Make text Boxes Editable
-
-            } else if (mEditBtn.getText().toString().equals("CANCEL")) {
-                Intent intent = new Intent(RedFlagItemDetail.this, RedFlagItemDetail.class);
-                intent.putExtra("redflag", Parcels.wrap(mRedFlag));
-                startActivity(intent);
-                finish();
-            }
-
-        }
-
-        if ( v == mSaveBtn) {
-
+            Intent intent = new Intent(RedFlagItemDetail.this, RedFlagEditActitvity.class);
+            intent.putExtra("redflag", Parcels.wrap(mRedFlag));
+            startActivity(intent);
+            finish();
         }
 
     }

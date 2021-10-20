@@ -93,7 +93,7 @@ public class RedFlagActivity extends AppCompatActivity {
 
             case R.id.CreateRed:
                 startActivity(new Intent(getApplicationContext()
-                        , CreateRedActivity.class));
+                        , RedFlagCreate.class));
                 overridePendingTransition(0, 0);
                 return true;
 

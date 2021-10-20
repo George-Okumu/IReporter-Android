@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if (view == mRedFlagBtn) {
-            Intent intent = new Intent(getActivity(), CreateRedActivity.class);
+            Intent intent = new Intent(getActivity(), RedFlagCreate.class);
             getActivity().startActivity(intent);
         }
         if (view == mIntBtn) {

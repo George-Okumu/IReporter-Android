@@ -47,6 +47,9 @@ public class RedFlag {
         this.user = user;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public String getStatus() {
         return status;
