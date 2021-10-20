@@ -12,12 +12,13 @@
         android:id="@+id/include"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:tabBackground="@color/white"
         android:layout_marginTop="0dp"
-        app:tabGravity="center"
         android:backgroundTint="@color/white"
+        app:tabBackground="@color/white"
+        app:tabGravity="center"
         app:tabIndicatorColor="@color/teal_200"
         app:tabIndicatorHeight="3.5dp"
+        app:tabMaxWidth="0dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="#618C8F"
         app:tabTextColor="@color/primary">
@@ -49,11 +50,11 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/include"
-        android:layout_marginTop="0dp"
-        android:id="@+id/fragment_container">
+        android:layout_marginTop="0dp">
 
     </androidx.viewpager.widget.ViewPager>
 
