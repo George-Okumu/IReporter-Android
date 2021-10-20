@@ -1,69 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.RedFlagItemDetail"
+    android:background="@color/dark_primary"
     android:orientation="vertical"
-    android:background="@color/dark_primary">
+    android:paddingHorizontal="10dp"
+    tools:context=".ui.RedFlagItemDetail">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/detective"
-        android:id="@+id/signUpImage"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/signUpImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/detective" />
+
+        <TextView
+            android:id="@+id/tv_status_label"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/signUpImage"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@id/signUpImage"
+            android:gravity="center_horizontal"
+            android:text="Redflag Status:" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_status_label"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/tv_status_label"
+            android:text="Review"
+            android:textColor="@color/purple_200" />
+    </RelativeLayout>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Red-Flag"
+        android:text="Red-Flag Detail"
         android:textAllCaps="true"
         android:textColor="@color/light_primary"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Red-flag detail"
-        android:textSize="20sp"
-        android:textColor="@color/light_primary"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/tv_subject"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
+            android:text="subject" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_description"
             android:layout_width="match_parent"
-            android:text="subject"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
-            android:layout_height="50dp"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:text="description"
-            android:background="@color/cardview_light_background"
-            android:layout_height="50dp"/>
+            android:text="description" />
 
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_location"
             android:layout_width="match_parent"
-            android:text="location"
+            android:layout_height="50dp"
             android:background="@color/cardview_light_background"
-            android:layout_height="50dp"/>
+            android:text="location" />
 
     </LinearLayout>
 
-    <Button
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit"
-        android:id="@+id/createRed"
-        android:textStyle="bold"
-        android:textColor="@color/dark_primary"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_image"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/corruption2" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp">
+
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:text="EDIT"
+            android:textColor="@color/dark_primary"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@id/btn_edit"
+            android:gravity="center"
+            android:text="SAVE"
+            android:textColor="@color/dark_primary"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </RelativeLayout>
 </LinearLayout>
