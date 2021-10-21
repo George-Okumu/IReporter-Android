@@ -7,6 +7,10 @@
     tools:context=".ui.RedFlagActivity"
     android:scrollbars="vertical">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -39,6 +43,4 @@
 
 
 
-    <!--    <include-->
-    <!--        android:id="@+id/toolbar"-->
-    <!--        layout="@layout/toolbar" />-->
+

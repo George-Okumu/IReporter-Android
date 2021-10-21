@@ -21,6 +21,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.redFlagBtn)
     Button mRedFlagBtn;
     @BindView(R.id.intBtn) Button mIntBtn;
+    @BindView(R.id.intLocation) Button mIntLoc;
 
 
     @Override
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         ButterKnife.bind(this, view);
         mRedFlagBtn.setOnClickListener(this);
         mIntBtn.setOnClickListener(this);
+        mIntLoc.setOnClickListener(this);
 
         return view;
     }
@@ -43,6 +45,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         }
         if (view == mIntBtn) {
             Intent intent = new Intent(getActivity(), CreateIntActivity.class);
+            getActivity().startActivity(intent);
+        }
+        if (view == mIntLoc) {
+            Intent intent = new Intent(getActivity(), LocationActivity.class);
             getActivity().startActivity(intent);
         }
 

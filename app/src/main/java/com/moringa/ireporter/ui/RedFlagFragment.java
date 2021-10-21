@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.moringa.ireporter.R;
 import com.moringa.ireporter.adapters.RedFlagAdapter;
+import com.moringa.ireporter.models.Intervention;
 import com.moringa.ireporter.models.RedFlag;
 import com.moringa.ireporter.network.IreporterApi;
 import com.moringa.ireporter.network.IreporterClient;

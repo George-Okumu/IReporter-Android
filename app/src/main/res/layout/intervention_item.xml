@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/subjectRed"
+                android:id="@+id/subjectInt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Subject"
@@ -32,7 +32,7 @@
             </com.google.android.material.textview.MaterialTextView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/descriptionRed"
+                android:id="@+id/descriptionInt"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
 
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/locationRed"
+                android:id="@+id/locationInt"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,16 +71,16 @@
 
 
 
-            <ImageView
-        android:id="@+id/imageRed"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-                android:padding="5dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageInt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background" />
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

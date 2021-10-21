@@ -11,13 +11,18 @@
         layout="@layout/toolbar"
         app:menu="@menu/overflow"/>
 
-    <TextView
+
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:text="hallo"
-        android:gravity="center"
-        android:textSize="40sp" />
+        android:id="@+id/recyclerView"
+        android:layout_margin="2dp"
+        android:fitsSystemWindows="true"
+        android:padding="2dp"
+        android:scrollbars="vertical">
+    </androidx.recyclerview.widget.RecyclerView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

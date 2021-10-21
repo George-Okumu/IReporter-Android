@@ -70,7 +70,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location">
+            android:hint="Enter Address Location">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/locationRed"
@@ -109,4 +109,6 @@
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
 </LinearLayout>

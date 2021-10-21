@@ -6,12 +6,15 @@
     tools:context=".ui.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerView"
-        android:layout_margin="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
         android:fitsSystemWindows="true"
-        android:padding="2dp" >
+        android:padding="2dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -37,6 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/lieout2"
         android:layout_centerVertical="true"
         android:layout_below="@+id/lieout"
         android:layout_centerHorizontal="true">
@@ -50,6 +54,26 @@
             android:drawableLeft="@drawable/ic_baseline_add_circle_24"
             android:drawablePadding="5dp"
             android:text="Create Intervention"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout2"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intLocation"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Pick Location"/>
 
 
     </LinearLayout>
