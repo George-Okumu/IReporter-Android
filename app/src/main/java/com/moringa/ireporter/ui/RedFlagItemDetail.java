@@ -31,6 +31,10 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
 
     private static final String TAG = "RedFlagItemDetail" ;
     private RedFlag mRedFlag;
+    private SharedPreferences sharePrefs;
+    private String token;
+    private JsonWebToken jwt;
+
 
     @BindView(R.id.tv_status) TextView mStatus;
     @BindView(R.id.tv_subject)
@@ -45,7 +49,10 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_red_flag_item_detail);
         ButterKnife.bind(this);
+        sharePrefs = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
+        token = sharePrefs.getString(Constants.USER_TOKEN,"");
         mRedFlag = Parcels.unwrap(getIntent().getParcelableExtra("redflag"));
+        jwt = new JsonWebToken(token);
         assignViews(mRedFlag);
 
         mEditBtn.setOnClickListener(this);
@@ -54,13 +61,17 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if ( v == mEditBtn) {
-            Intent intent = new Intent(RedFlagItemDetail.this, RedFlagEditActitvity.class);
-            intent.putExtra("redflag", Parcels.wrap(mRedFlag));
-            startActivity(intent);
-            finish();
-        }
 
+        if ( v == mEditBtn) {
+            if(mRedFlag.getUser().equals(jwt.getUsername()) && mRedFlag.getStatus().equals("received")){
+                Intent intent = new Intent(RedFlagItemDetail.this, RedFlagEditActitvity.class);
+                intent.putExtra("redflag", Parcels.wrap(mRedFlag));
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(RedFlagItemDetail.this, "You Cannot Edit this", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void assignViews(RedFlag redFlag) {
@@ -78,13 +89,8 @@ public class RedFlagItemDetail extends AppCompatActivity implements View.OnClick
         String token = sharePrefs.getString(Constants.USER_TOKEN,"");
         JsonWebToken jwt = new JsonWebToken(token);
         if (mRedFlag.getUser().equals(jwt.getUsername()) && mRedFlag.getStatus().equals("received")) {
-            mEditBtn.setClickable(true);
         }else {
-            mEditBtn.setClickable(false);
             mEditBtn.setAlpha((float) 0.5);
         }
-
     }
-
-
 }

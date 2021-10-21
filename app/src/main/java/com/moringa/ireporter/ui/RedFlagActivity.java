@@ -45,8 +45,6 @@ public class RedFlagActivity extends AppCompatActivity {
         setContentView(R.layout.activity_red_flag);
         ButterKnife.bind(this);
 
-//        ApiCalls.getRedFlags();
-//        waitData.run();
         setupRecycerView();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -73,6 +71,12 @@ public class RedFlagActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupRecycerView();
     }
 
     @Override
@@ -138,17 +142,5 @@ public class RedFlagActivity extends AppCompatActivity {
     }
 
 
-
-    private Runnable waitData = new Runnable() {
-        @Override
-        public void run() {
-            if (mRedFlags != null) {
-                setupRecycerView();
-                mHandler.removeCallbacks(this);
-            }
-            mRedFlags = ApiCalls.redFlags;
-            mHandler.postDelayed(this,1000);
-        }
-    };
 
 }
