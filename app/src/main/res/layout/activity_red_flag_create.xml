@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:orientation="vertical"
-    tools:context=".ui.CreateRedActivity">
+    tools:context=".ui.RedFlagCreate">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/signUpImage"

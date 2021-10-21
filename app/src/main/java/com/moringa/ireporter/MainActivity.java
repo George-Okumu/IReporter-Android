@@ -29,11 +29,11 @@ import com.moringa.ireporter.models.RedFlag;
 import com.moringa.ireporter.network.IreporterApi;
 import com.moringa.ireporter.network.IreporterClient;
 import com.moringa.ireporter.ui.CreateIntActivity;
-import com.moringa.ireporter.ui.CreateRedActivity;
 import com.moringa.ireporter.ui.InterventionActivity;
 import com.moringa.ireporter.ui.LocationActivity;
 import com.moringa.ireporter.ui.LoginActivity;
 import com.moringa.ireporter.ui.RedFlagActivity;
+import com.moringa.ireporter.ui.RedFlagCreate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -193,8 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
 
             case R.id.CreateRed:
-                startActivity(new Intent(getApplicationContext()
-                        , CreateRedActivity.class));
+                startActivity(new Intent(getApplicationContext(), RedFlagCreate.class));
                 overridePendingTransition(0, 0);
                 return true;
 

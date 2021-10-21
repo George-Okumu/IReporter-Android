@@ -23,8 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IReporter">
         <activity
-            android:name=".ui.LocationActivity"
-            android:exported="false" />
+            android:name=".ui.RedFlagCreate"
+            android:exported="true" />
+        <activity
+            android:name=".ui.RedFlagEditActitvity"
+            android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -43,9 +46,6 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".ui.CreateIntActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.CreateRedActivity"
             android:exported="true" />
         <activity
             android:name=".ui.InterventionActivity"

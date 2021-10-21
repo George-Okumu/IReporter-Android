@@ -7,7 +7,7 @@
     android:background="@color/dark_primary"
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
-    tools:context=".ui.RedFlagItemDetail">
+    tools:context=".ui.RedFlagEditActitvity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/detective" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_status_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Red-Flag Detail"
+        android:text="Red-Flag Edit"
         android:textAllCaps="true"
         android:textColor="@color/light_primary"
         android:textSize="20sp"
@@ -66,10 +66,9 @@
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
-            android:focusable="false"
             android:text="subject" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -78,7 +77,7 @@
             android:text="description" />
 
 
-        <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_location"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -121,7 +120,21 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:padding="10dp"
-            android:text="EDIT"
+            android:text="CANCEL"
+            android:textColor="@color/dark_primary"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@id/btn_edit"
+            android:gravity="center"
+            android:text="SAVE"
             android:textColor="@color/dark_primary"
             android:textStyle="bold" />
     </RelativeLayout>

@@ -91,8 +91,8 @@ public class RedFlagAdapter extends RecyclerView.Adapter<RedFlagAdapter.RedFlagV
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, RedFlagItemDetail.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("redflags", Parcels.wrap(mRedFlags.get(itemPosition)));
+            //intent.putExtra("position", itemPosition);
+            intent.putExtra("redflag", Parcels.wrap(mRedFlags.get(itemPosition)));
             mContext.startActivity(intent);
             if (v == mAttach){
                 Intent intent1 = new Intent(mContext, LocationActivity.class);

@@ -7,6 +7,9 @@ import com.moringa.ireporter.R;
 import org.parceler.Parcel;
 @Parcel
 public class RedFlag {
+    @SerializedName("id")
+    @Expose
+    int id;
     @SerializedName("redFlag_image")
     @Expose
     String imageUrl;
@@ -25,18 +28,35 @@ public class RedFlag {
     @SerializedName("redFlag_location")
     @Expose
     String location;
-
+    @SerializedName("status")
+    @Expose
+    String status;
     // Default constructor
     public RedFlag() {
     }
 
-    public RedFlag(String imageUrl,String title, String description, String location) {
+    public RedFlag(int id, String imageUrl,String title, String description, String location,String videoUrl,String status,String user) {
         super();
+        this.id = id;
         this.title = title;
         this.description = description;
         this.location = location;
-
         this.imageUrl = imageUrl;
+        this.videoUrl = videoUrl;
+        this.status = status;
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getImageUrl() {
@@ -86,5 +106,4 @@ public class RedFlag {
     public void setLocation(String location) {
         this.location = location;
     }
-
 }

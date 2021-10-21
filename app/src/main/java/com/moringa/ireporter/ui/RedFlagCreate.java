@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.CursorLoader;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -25,15 +24,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -57,7 +53,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class CreateRedActivity extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class RedFlagCreate extends AppCompatActivity implements View.OnClickListener {
     private static final int PERMISSION_REQUEST_CODE = 200;
 
     @BindView(R.id.subjectRed) EditText mSubject;
@@ -68,7 +64,6 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.image) ImageView mImage;
     @BindView(R.id.locationBtn) Button mLocationBtn;
 
-
     String imagePath ;
     Uri imageUri;
 
@@ -76,14 +71,12 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_red);
+        setContentView(R.layout.activity_red_flag_create);
         ButterKnife.bind(this);
-
         mUploadImage.setOnClickListener(this);
         mCreateRedFlag.setOnClickListener(this);
         mLocationBtn.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -123,7 +116,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         }
 
         if (v == mLocationBtn) {
-            Intent intent = new Intent(CreateRedActivity.this, MapsActivity.class);
+            Intent intent = new Intent(RedFlagCreate.this, MapsActivity.class);
             startActivity(intent);
         }
 
@@ -138,8 +131,6 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         RequestBody description = RequestBody.create(MediaType.parse("text/plain"),mDescription.getText().toString());
         RequestBody location = RequestBody.create(MediaType.parse("text/plain"),mLocation.getText().toString());
 
-
-
         // Get token
         SharedPreferences sharedPrefs = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
         String token = sharedPrefs.getString(Constants.USER_TOKEN,"");
@@ -150,13 +141,13 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         call.enqueue(new Callback<RedFlag>() {
             @Override
             public void onResponse(Call call, Response response) {
-                Toast.makeText(getApplicationContext(), "Red Flag saved", Toast.LENGTH_LONG).show();
-               startActivity(new Intent(CreateRedActivity.this, RedFlagActivity.class));
-                }
+                Toast.makeText(getApplicationContext(), "Red Flag saved",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(RedFlagCreate.this, RedFlagFragment.class));
+            }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-               Log.d("Failure",t.toString());
+                Log.d("Failure",t.toString());
 
             }
         });
@@ -211,7 +202,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
                 alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(CreateRedActivity.this, new String[]{WRITE_EXTERNAL_STORAGE
+                        ActivityCompat.requestPermissions(RedFlagCreate.this, new String[]{WRITE_EXTERNAL_STORAGE
                                 , READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
                     }
                 });
@@ -219,7 +210,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
                 alert.show();
                 Log.e("", "permission denied, show dialog");
             } else {
-                ActivityCompat.requestPermissions(CreateRedActivity.this, new String[]{WRITE_EXTERNAL_STORAGE,
+                ActivityCompat.requestPermissions(RedFlagCreate.this, new String[]{WRITE_EXTERNAL_STORAGE,
                         READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
             }
         } else {
