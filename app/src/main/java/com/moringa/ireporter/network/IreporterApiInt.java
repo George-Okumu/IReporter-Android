@@ -18,15 +18,15 @@ import retrofit2.http.Part;
 
 public interface IreporterApiInt {
     @Multipart
-    @POST("intervention")
+    @POST("/api/intervention")
     Call<InterventionRes> upload(
             @Part MultipartBody.Part image,
-            @Part("subject") RequestBody title,
+            @Part("subject") RequestBody subject,
             @Part("description")RequestBody description,
             @Part("location") RequestBody location,
             @Header("Authorization") String token
     );
 
-    @GET("intervention")
+    @GET("/api/intervention")
     Call<List<Intervention>>getIntervention();
 }

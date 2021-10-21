@@ -142,7 +142,7 @@ public class RedFlagCreate extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getApplicationContext(), "Red Flag saved",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(RedFlagCreate.this, RedFlagFragment.class));
+                startActivity(new Intent(RedFlagCreate.this, RedFlagActivity.class));
             }
 
             @Override
