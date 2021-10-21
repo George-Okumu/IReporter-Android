@@ -54,13 +54,7 @@
 
             </com.google.android.material.textview.MaterialTextView>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/light_primary"
-                android:text="Attach GeoLocation"
-                android:id="@+id/attachGeo">
-            </Button>
+
 
 
             <LinearLayout
