@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.CursorLoader;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -24,12 +25,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -64,6 +68,7 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.image) ImageView mImage;
     @BindView(R.id.locationBtn) Button mLocationBtn;
 
+
     String imagePath ;
     Uri imageUri;
 
@@ -73,10 +78,12 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_red);
         ButterKnife.bind(this);
+
         mUploadImage.setOnClickListener(this);
         mCreateRedFlag.setOnClickListener(this);
         mLocationBtn.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -131,6 +138,8 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         RequestBody description = RequestBody.create(MediaType.parse("text/plain"),mDescription.getText().toString());
         RequestBody location = RequestBody.create(MediaType.parse("text/plain"),mLocation.getText().toString());
 
+
+
         // Get token
         SharedPreferences sharedPrefs = getSharedPreferences(Constants.SHARED_PREFS,MODE_PRIVATE);
         String token = sharedPrefs.getString(Constants.USER_TOKEN,"");
@@ -141,9 +150,9 @@ public class CreateRedActivity extends AppCompatActivity implements View.OnClick
         call.enqueue(new Callback<RedFlag>() {
             @Override
             public void onResponse(Call call, Response response) {
-                Toast.makeText(getApplicationContext(), "Red Flag saved",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(CreateRedActivity.this, RedFlagFragment.class));
-            }
+                Toast.makeText(getApplicationContext(), "Red Flag saved", Toast.LENGTH_LONG).show();
+               startActivity(new Intent(CreateRedActivity.this, RedFlagActivity.class));
+                }
 
             @Override
             public void onFailure(Call call, Throwable t) {

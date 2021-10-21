@@ -42,11 +42,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Subject"
-            android:id="@+id/subjectInt"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/subjectInt"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -57,13 +57,12 @@
             android:hint="Description"
             app:counterEnabled="true"
             app:counterMaxLength="150"
-            android:id="@+id/descriptionInt"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/descriptionInt"
                 android:layout_height="wrap_content"
-                android:id="@+id/descriptionRed"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,12 +70,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Location"
-            android:id="@+id/locationInt"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/locationInt"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Upload Image"
-            android:id="@+id/uploadbtn"
+            android:id="@+id/uploadImgint"
             style="@style/TextAppearance.MaterialComponents.Button"
             android:drawableRight="@drawable/ic_baseline_image_24"
             android:drawableEnd="@drawable/ic_baseline_image_24"/>
@@ -93,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Upload Location"
-            android:id="@+id/locateBtn"
+            android:id="@+id/locationBtnint"
             style="@style/TextAppearance.MaterialComponents.Button"
             android:drawableRight="@drawable/ic_baseline_add_location_24"/>
 
@@ -106,4 +105,9 @@
         android:id="@+id/createInt"
         android:textStyle="bold"
         android:textColor="@color/dark_primary" />
+
+    <ImageView
+        android:id="@+id/imageInt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

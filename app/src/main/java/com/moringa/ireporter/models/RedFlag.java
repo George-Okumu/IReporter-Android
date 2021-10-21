@@ -25,6 +25,7 @@ public class RedFlag {
     @SerializedName("redFlag_location")
     @Expose
     String location;
+
     // Default constructor
     public RedFlag() {
     }
@@ -34,6 +35,7 @@ public class RedFlag {
         this.title = title;
         this.description = description;
         this.location = location;
+
         this.imageUrl = imageUrl;
     }
 
@@ -84,4 +86,5 @@ public class RedFlag {
     public void setLocation(String location) {
         this.location = location;
     }
+
 }

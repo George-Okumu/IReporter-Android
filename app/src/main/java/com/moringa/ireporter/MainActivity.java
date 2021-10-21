@@ -31,6 +31,7 @@ import com.moringa.ireporter.network.IreporterClient;
 import com.moringa.ireporter.ui.CreateIntActivity;
 import com.moringa.ireporter.ui.CreateRedActivity;
 import com.moringa.ireporter.ui.InterventionActivity;
+import com.moringa.ireporter.ui.LocationActivity;
 import com.moringa.ireporter.ui.LoginActivity;
 import com.moringa.ireporter.ui.RedFlagActivity;
 
@@ -49,11 +50,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 //    RedFlagAdapter mAdapter;
 
+//
+//    TabLayout tabLayout;
+//    TabItem mHome,mRedFlagg,mIntervention;
+//    PagerAdapter pagerAdapter;
+////    Toolbar mToolbar;
 
-    TabLayout tabLayout;
-    TabItem mHome,mRedFlagg,mIntervention;
-    PagerAdapter pagerAdapter;
-    Toolbar mToolbar;
+    @BindView(R.id.redFlagBtn)
+    Button mRedFlagBtn;
+    @BindView(R.id.intBtn) Button mIntBtn;
+    @BindView(R.id.intLocation) Button mIntLoc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-        // Fetch redflags
-        // Initialize recyler view
+////
+////         Fetch redflags
+////         Initialize recyler view
 //        mAdapter = new RedFlagAdapter(MainActivity.this, mRedFlags);
 //        mRecyclerView.setAdapter(mAdapter);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
@@ -72,74 +79,77 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        mRecyclerView.setHasFixedSize(true);
 //        mRecyclerView.setVisibility(View.VISIBLE);
 //        redflagRes();
+        ButterKnife.bind(this);
+
+        mRedFlagBtn.setOnClickListener(this);
+        mIntBtn.setOnClickListener(this);
+        mIntLoc.setOnClickListener(this);
 
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.Home);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Home:
+                        return true;
 
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setSelectedItemId(R.id.Home);
-//
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.Home:
-//                        return true;
-//
-//                    case R.id.Red:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,RedFlagActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//
-//                    case R.id.Int:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,InterventionActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
+                    case R.id.Red:
+                        startActivity(new Intent(getApplicationContext()
+                                ,RedFlagActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.Int:
+                        startActivity(new Intent(getApplicationContext()
+                                ,InterventionActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
 
 //        mToolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(mToolbar);
-
-        mHome = findViewById(R.id.home);
-        mRedFlagg = findViewById(R.id.redflagg);
-        mIntervention = findViewById(R.id.inter);
-
-
-        ViewPager viewPager = findViewById(R.id.fragment_container);
-        tabLayout = findViewById(R.id.include);
-
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 3);
-        viewPager.setAdapter(pagerAdapter);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0
-                        || tab.getPosition() == 1
-                        || tab.getPosition() == 2);
-                {
-                    pagerAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//
+//        mHome = findViewById(R.id.home);
+//        mRedFlagg = findViewById(R.id.redflagg);
+//        mIntervention = findViewById(R.id.inter);
+//
+//
+//        ViewPager viewPager = findViewById(R.id.fragment_container);
+//        tabLayout = findViewById(R.id.include);
+//
+//        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 3);
+//        viewPager.setAdapter(pagerAdapter);
+//
+//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                viewPager.setCurrentItem(tab.getPosition());
+//                if (tab.getPosition() == 0
+//                        || tab.getPosition() == 1
+//                        || tab.getPosition() == 2);
+//                {
+//                    pagerAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
 
@@ -199,6 +209,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        if (view == mRedFlagBtn) {
+            Intent intent = new Intent(MainActivity.this, CreateRedActivity.class);
+            startActivity(intent);
+        }
+        if (view == mIntBtn) {
+            Intent intent = new Intent(MainActivity.this, CreateIntActivity.class);
+           startActivity(intent);
+        }
+        if (view == mIntLoc) {
+            Intent intent = new Intent(MainActivity.this, LocationActivity.class);
+         startActivity(intent);
+        }
+
 
     }
 
@@ -224,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            }
 //        });
-
+//
 //    }
 
 }
