@@ -46,16 +46,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-//    private List<RedFlag> mRedFlags = new ArrayList<>();
-//    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-//    RedFlagAdapter mAdapter;
-
-//
-//    TabLayout tabLayout;
-//    TabItem mHome,mRedFlagg,mIntervention;
-//    PagerAdapter pagerAdapter;
-////    Toolbar mToolbar;
-
     @BindView(R.id.redFlagBtn)
     Button mRedFlagBtn;
     @BindView(R.id.intBtn) Button mIntBtn;
@@ -66,19 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-////
-////         Fetch redflags
-////         Initialize recyler view
-//        mAdapter = new RedFlagAdapter(MainActivity.this, mRedFlags);
-//        mRecyclerView.setAdapter(mAdapter);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-//        mRecyclerView.setLayoutManager(layoutManager);
-//        mRecyclerView.setHasFixedSize(true);
-//        mRecyclerView.setVisibility(View.VISIBLE);
-//        redflagRes();
         ButterKnife.bind(this);
 
         mRedFlagBtn.setOnClickListener(this);
@@ -113,43 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-//        mToolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(mToolbar);
-//
-//        mHome = findViewById(R.id.home);
-//        mRedFlagg = findViewById(R.id.redflagg);
-//        mIntervention = findViewById(R.id.inter);
-//
-//
-//        ViewPager viewPager = findViewById(R.id.fragment_container);
-//        tabLayout = findViewById(R.id.include);
-//
-//        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 3);
-//        viewPager.setAdapter(pagerAdapter);
-//
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                viewPager.setCurrentItem(tab.getPosition());
-//                if (tab.getPosition() == 0
-//                        || tab.getPosition() == 1
-//                        || tab.getPosition() == 2);
-//                {
-//                    pagerAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
 
     }
 
@@ -225,28 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-//    private void redflagRes() {
-//        Retrofit retrofit = IreporterClient.getRetrofit();
-//        IreporterApi ireporterApi = retrofit.create(IreporterApi.class);
-//        Call<List<RedFlag>> call = ireporterApi.getRedFlags();
-//        call.enqueue(new Callback<List<RedFlag>>() {
-//            @Override
-//            public void onResponse(Call<List<RedFlag>> call, Response<List<RedFlag>> response) {
-//                if (response.isSuccessful()) {
-//                    for (RedFlag redFlag: response.body() ) {
-//                        mRedFlags.add(redFlag);
-//                    }
-//                    //mRedFlags = response.body();
-//                    mAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<RedFlag>> call, Throwable t) {
-//
-//            }
-//        });
-//
-//    }
+
 
 }
