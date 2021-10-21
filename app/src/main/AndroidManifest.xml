@@ -70,6 +70,9 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
+            android:name=".ui.LocationActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
             <intent-filter>

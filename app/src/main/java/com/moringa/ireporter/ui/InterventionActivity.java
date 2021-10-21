@@ -20,6 +20,7 @@ import com.moringa.ireporter.MainActivity;
 import com.moringa.ireporter.R;
 import com.moringa.ireporter.adapters.InterventionAdapter;
 import com.moringa.ireporter.models.Intervention;
+import com.moringa.ireporter.models.RedFlag;
 import com.moringa.ireporter.network.IreporterApiInt;
 import com.moringa.ireporter.network.IreporterClient;
 
@@ -46,16 +47,7 @@ public class InterventionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intervention);
         ButterKnife.bind(this);
 
-
-        // Fetch intervention
-        // Initialize recyler view
-        mAdapter = new InterventionAdapter(InterventionActivity.this, mIntervention);
-        mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(InterventionActivity.this);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setVisibility(View.VISIBLE);
-        interventionRes();
+        setupRecyclerView();
 
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -87,29 +79,35 @@ public class InterventionActivity extends AppCompatActivity {
         });
     }
 
-    private void interventionRes() {
+    private void setupRecyclerView() {
+
         Retrofit retrofit = IreporterClient.getRetrofit();
-        IreporterApiInt ireporterApi = retrofit.create(IreporterApiInt.class);
-        Call<List<Intervention>> call = ireporterApi.getIntervention();
+        IreporterApiInt api = retrofit.create(IreporterApiInt.class);
+
+
+        Call<List<Intervention>> call = api.getIntervention();
         call.enqueue(new Callback<List<Intervention>>() {
             @Override
             public void onResponse(Call<List<Intervention>> call, Response<List<Intervention>> response) {
                 if (response.isSuccessful()) {
-                    for (Intervention intervention: response.body() ) {
-                        mIntervention.add(intervention);
-                    }
-                    //mRedFlags = response.body();
-                    mAdapter.notifyDataSetChanged();
+                    mIntervention = response.body();
+                    mAdapter = new InterventionAdapter(InterventionActivity.this, mIntervention);
+                    mRecyclerView.setAdapter(mAdapter);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(InterventionActivity.this);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setHasFixedSize(true);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+
                 }
             }
-
             @Override
             public void onFailure(Call<List<Intervention>> call, Throwable t) {
-
             }
-        });
+            });
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
