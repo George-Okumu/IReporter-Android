@@ -8,71 +8,81 @@
     tools:context=".MainActivity">
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/include"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="0dp"
-        android:backgroundTint="@color/white"
-        app:tabBackground="@color/white"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@color/teal_200"
-        app:tabIndicatorHeight="3.5dp"
-        app:tabMaxWidth="0dp"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#618C8F"
-        app:tabTextColor="@color/primary">
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/lieout"
+        android:layout_centerHorizontal="true">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:id="@+id/redFlagBtn"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Create Red Flag" />
 
-        </com.google.android.material.tabs.TabItem>
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/redflagg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Red-Flag">
-
-        </com.google.android.material.tabs.TabItem>
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/inter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Intervention">
-
-        </com.google.android.material.tabs.TabItem>
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/fragment_container"
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/include"
-        android:layout_marginTop="0dp">
+        android:layout_height="wrap_content"
+        android:id="@+id/lieout2"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout"
+        android:layout_centerHorizontal="true">
 
-    </androidx.viewpager.widget.ViewPager>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intBtn"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Create Intervention"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout2"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intLocation"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Pick Location"/>
+
+
+    </LinearLayout>
 
 
 
 
 
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:background="@drawable/tab_corners_shape"-->
-<!--        app:itemIconTint="@color/tab_item"-->
-<!--        app:itemTextColor="@color/light_primary"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:menu="@menu/menu2" />-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/tab_corners_shape"
+        app:itemIconTint="@color/tab_item"
+        app:itemTextColor="@color/light_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu2" />
 
 </RelativeLayout>
