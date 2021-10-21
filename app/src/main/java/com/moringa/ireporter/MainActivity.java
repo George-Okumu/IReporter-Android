@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == mRedFlagBtn) {
-            Intent intent = new Intent(MainActivity.this, CreateRedActivity.class);
+            Intent intent = new Intent(MainActivity.this, RedFlagCreate.class);
             startActivity(intent);
         }
         if (view == mIntBtn) {
