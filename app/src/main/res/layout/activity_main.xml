@@ -1,18 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/include"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        app:tabBackground="@color/white"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        app:tabIndicatorColor="@color/teal_200"-->
+<!--        app:tabIndicatorHeight="3.5dp"-->
+<!--        app:tabSelectedTextColor="#618C8F"-->
+<!--        app:tabTextColor="@color/primary">-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/home"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Home">-->
+
+<!--        </com.google.android.material.tabs.TabItem>-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/redflagg"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Red-Flag">-->
+
+<!--        </com.google.android.material.tabs.TabItem>-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/inter"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Intervention">-->
+
+<!--        </com.google.android.material.tabs.TabItem>-->
+
+<!--    </com.google.android.material.tabs.TabLayout>-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/include"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:id="@+id/fragment_container">-->
+
+<!--    </androidx.viewpager.widget.ViewPager>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/lieout"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:id="@+id/redFlagBtn"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Create Red Flag" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lieout2"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intBtn"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Create Intervention"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout2"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intLocation"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Pick Location"/>
+
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/tab_corners_shape"
+        app:itemIconTint="@color/tab_item"
+        app:itemTextColor="@color/light_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu2" />
+
+</RelativeLayout>

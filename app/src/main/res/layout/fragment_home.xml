@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.HomeFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        android:fitsSystemWindows="true"
+        android:padding="2dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/lieout"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:id="@+id/redFlagBtn"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Create Red Flag" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lieout2"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intBtn"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Create Intervention"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/lieout2"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/intLocation"
+            android:drawableStart="@drawable/ic_baseline_add_circle_24"
+            android:drawableLeft="@drawable/ic_baseline_add_circle_24"
+            android:drawablePadding="5dp"
+            android:text="Pick Location"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
