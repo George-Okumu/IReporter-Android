@@ -42,20 +42,4 @@ public class ApiCalls {
         });
     }
 
-    public static Callback<RedFlag> getRedFlagById (int id) {
-        Call <RedFlag> call = ireporterApi.getRedFlagById(id);
-        Callback res = new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-
-            }
-        };
-        return res;
-
-    }
 }
