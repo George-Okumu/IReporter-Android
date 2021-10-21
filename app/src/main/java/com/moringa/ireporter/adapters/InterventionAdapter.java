@@ -62,8 +62,7 @@ public class InterventionAdapter extends RecyclerView.Adapter<InterventionAdapte
         @BindView(R.id.descriptionInt)TextView mDescriptionInt;
         @BindView(R.id.subjectInt) TextView mSubjectInt;
         @BindView(R.id.locationInt) TextView mLocationInt;
-        @BindView(R.id.attachGeo)
-        Button mAttach;
+
 
 
         private Context mContext;
@@ -95,12 +94,7 @@ public class InterventionAdapter extends RecyclerView.Adapter<InterventionAdapte
             intent.putExtra("position", itemPosition);
             intent.putExtra("intervention", Parcels.wrap(mIntervention.get(itemPosition)));
             mContext.startActivity(intent);
-            if (v == mAttach){
-                Intent intent1 = new Intent(mContext, LocationActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("intervention", Parcels.wrap(mIntervention.get(itemPosition)));
-                mContext.startActivity(intent1);
-            }
+
         }
 
     }

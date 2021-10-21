@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class IreporterIntClient {
-    public static String BASE_URL ="https://ireporter-a.herokuapp.com/api/";
+    public static String BASE_URL ="https://ireporter-a.herokuapp.com";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofit() {
