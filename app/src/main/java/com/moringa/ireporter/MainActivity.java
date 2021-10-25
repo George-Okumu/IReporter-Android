@@ -2,16 +2,11 @@ package com.moringa.ireporter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,13 +16,6 @@ import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
-import com.moringa.ireporter.adapters.PagerAdapter;
-import com.moringa.ireporter.adapters.RedFlagAdapter;
-import com.moringa.ireporter.models.RedFlag;
-import com.moringa.ireporter.network.IreporterApi;
-import com.moringa.ireporter.network.IreporterClient;
 import com.moringa.ireporter.ui.CreateIntActivity;
 import com.moringa.ireporter.ui.InterventionActivity;
 import com.moringa.ireporter.ui.LocationActivity;
@@ -35,15 +23,8 @@ import com.moringa.ireporter.ui.LoginActivity;
 import com.moringa.ireporter.ui.RedFlagActivity;
 import com.moringa.ireporter.ui.RedFlagCreate;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.redFlagBtn)

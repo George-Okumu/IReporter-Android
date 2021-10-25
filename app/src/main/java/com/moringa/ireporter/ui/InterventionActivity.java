@@ -48,9 +48,9 @@ public class InterventionActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setupRecyclerView();
-
-        Toolbar toolbar = findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
+//
+//        Toolbar toolbar = findViewById(R.id.toolbar2);
+//        setSupportActionBar(toolbar);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.Int);
