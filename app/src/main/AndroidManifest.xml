@@ -23,6 +23,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IReporter">
         <activity
+            android:name=".ui.InterventionItemDetail"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InterventionEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.RedFlagCreate"
             android:exported="true" />
         <activity

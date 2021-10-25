@@ -7,7 +7,7 @@
     android:background="@color/primary"
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
-    tools:context=".ui.RedFlagEditActitvity">
+    tools:context=".ui.RedFlagItemDetail">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/detective" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tv_status_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_marginStart="40dp"
             android:layout_toEndOf="@id/signUpImage"
             android:gravity="center_horizontal"
-            android:text="Redflag Status:"
+            android:text="Intervention Status:"
             android:textColor="@color/white" />
 
         <TextView
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Red-Flag Edit"
+        android:text="Intervention Detail"
         android:textAllCaps="true"
         android:textColor="@color/light_primary"
         android:textSize="20sp"
@@ -66,9 +66,10 @@
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
+            android:focusable="false"
             android:text="subject" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -77,12 +78,11 @@
             android:text="description" />
 
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_location"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/cardview_light_background"
-            android:maxLength="20"
             android:text="location" />
 
     </LinearLayout>
@@ -98,7 +98,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_image"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="130dp"
             android:scaleType="centerCrop"
             android:src="@drawable/corruption2" />
 
@@ -111,9 +111,8 @@
         android:layout_gravity="center"
         android:layout_margin="5dp">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_edit"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -121,26 +120,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            app:strokeColor="@color/white"
-
             android:padding="10dp"
-            android:text="CANCEL"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@id/btn_edit"
-            android:backgroundTint="#4CAF50"
-            android:gravity="center"
-            android:text="SAVE"
-            android:textColor="@color/white"
+            android:text="EDIT"
+            android:textColor="@color/dark_primary"
             android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>

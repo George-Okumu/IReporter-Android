@@ -7,6 +7,9 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Intervention {
+    @SerializedName("id")
+    @Expose
+    int id;
     @SerializedName("intervention_image")
     @Expose
     String imageUrl;
@@ -22,18 +25,38 @@ public class Intervention {
     @SerializedName("location")
     @Expose
     String location;
+    @SerializedName("status")
+    @Expose
+    String status;
 
     // Default constructor
     public Intervention() {
     }
 
-    public Intervention(String imageUrl,String subject, String description, String location) {
+    public Intervention(int id,String imageUrl,String subject, String description, String location,String status) {
         super();
+        this.id = id;
         this.subject = subject;
         this.description = description;
         this.location = location;
-
+        this.status = status;
         this.imageUrl = imageUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getImageUrl() {

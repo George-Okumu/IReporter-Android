@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_primary"
+    android:background="@color/primary"
     android:orientation="vertical"
     tools:context=".ui.SignUpActivity">
 
@@ -23,14 +23,15 @@
         android:fontFamily="cursive"
         android:text="Let's Get Started"
         android:textColor="@color/light_primary"
-        android:textSize="40sp" />
+        android:textSize="35sp" />
 
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
-        android:layout_marginLeft="27dp">
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="34dp"
+        android:layout_centerHorizontal="true">
 
 
         <EditText

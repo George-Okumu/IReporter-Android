@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/divider"
     tools:context=".ui.RedFlagActivity"
     android:scrollbars="vertical">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -31,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
-        app:itemBackground="@color/dark_primary"
+        app:itemBackground="@color/primary"
         app:itemTextColor="@color/light_primary"
         app:itemIconTint="@color/light_primary"
         app:menu="@menu/menu2"
